@@ -1,0 +1,275 @@
+name: 'DXPR CMS Basic'
+description: 'Core DXPR CMS functionality with visual page building tools.'
+type: 'Site'
+recipes:
+  - core/recipes/content_editor_role
+  - core/recipes/full_html_format_editor
+install:
+  # Core DXPR modules
+  - dxpr_builder
+  - dxpr_builder_block
+  - dxpr_builder_page
+  - dxpr_theme
+  - dxpr_theme_helper
+  
+  # Supporting modules
+  - block_content
+  - field_group
+  - menu_link_attributes
+  - responsive_preview
+  - section_library
+  - moderation_dashboard
+  
+  # Admin theme
+  - gin
+  - gin_toolbar
+  
+  # Content management
+  - pathauto
+  - shortcut
+  - layout_builder
+  - media_library
+  - media_library_form_element
+  
+  # Basic content types
+  - node
+  - taxonomy
+  - menu_ui
+  - views_ui
+
+config:
+  strict: false
+  import:
+    # DXPR Builder configuration
+    dxpr_builder: '*'
+    dxpr_builder_block: '*'
+    dxpr_builder_page: '*'
+    dxpr_theme_helper: '*'
+    
+    # DXPR Theme configuration
+    dxpr_theme: '*'
+    
+    # Menu and navigation
+    menu_link_attributes: '*'
+    
+    # System configuration
+    system:
+      - system.theme
+      - system.menu.main
+      - system.menu.account
+      - system.menu.admin
+      - system.menu.tools
+    
+    # Content types
+    node:
+      - node.type.drag_and_drop_page
+      - node.type.page
+    
+    # Views
+    views:
+      - views.view.content
+    
+    # Shortcuts
+    shortcut:
+      - shortcut.set.default
+    
+    # Image styles
+    image:
+      - image.style.thumbnail
+      - image.style.medium
+      - image.style.large
+    
+    # Media types
+    media:
+      - media.type.image
+      - media.type.document
+      - media.type.video
+      - media.type.remote_video
+    
+    # Field configurations
+    field:
+      - field.storage.node.field_featured_image
+      - field.storage.node.field_tags
+      - field.storage.node.body
+      - field.field.node.page.field_featured_image
+      - field.field.node.page.field_tags
+      - field.field.node.page.body
+      - field.field.node.drag_and_drop_page.field_featured_image
+      - field.field.node.drag_and_drop_page.field_tags
+      - field.field.node.drag_and_drop_page.body
+    
+    # Form and display configurations
+    core.entity_form_display.node.page.default: '*'
+    core.entity_view_display.node.page.default: '*'
+    core.entity_view_display.node.page.teaser: '*'
+    core.entity_form_display.node.drag_and_drop_page.default: '*'
+    core.entity_view_display.node.drag_and_drop_page.default: '*'
+    core.entity_view_display.node.drag_and_drop_page.teaser: '*'
+    
+    # Media form and display configurations
+    core.entity_form_display.media.image.media_library: '*'
+    core.entity_view_display.media.image.media_library: '*'
+    core.entity_form_display.media.document.media_library: '*'
+    core.entity_view_display.media.document.media_library: '*'
+    core.entity_form_display.media.video.media_library: '*'
+    core.entity_view_display.media.video.media_library: '*'
+    core.entity_form_display.media.remote_video.media_library: '*'
+    core.entity_view_display.media.remote_video.media_library: '*'
+
+  actions:
+    # Set up themes
+    system.theme:
+      simple_config_update:
+        default: dxpr_theme
+        admin: gin
+    
+    # Configure site settings
+    system.site:
+      simple_config_update:
+        name: 'DXPR CMS'
+        page.front: '/home'
+    
+    # Set up content editor permissions
+    user.role.content_editor:
+      grantPermissions:
+        - 'access administration pages'
+        - 'access content overview'
+        - 'access contextual links'
+        - 'access media overview'
+        - 'access navigation'
+        - 'access toolbar'
+        - 'administer url aliases'
+        - 'create url aliases'
+        - 'create page content'
+        - 'edit any page content'
+        - 'delete any page content'
+        - 'create drag_and_drop_page content'
+        - 'edit any drag_and_drop_page content'
+        - 'delete any drag_and_drop_page content'
+        - 'view own unpublished content'
+        - 'view own unpublished media'
+        - 'delete own files'
+        - 'revert all revisions'
+        - 'view all revisions'
+        - 'view the administration theme'
+        - 'use text format full_html'
+        - 'use text format basic_html'
+        - 'use text format restricted_html'
+    
+    # Set up authenticated user permissions
+    user.role.authenticated:
+      grantPermissions:
+        - 'access shortcuts'
+        - 'delete own files'
+        - 'view own unpublished content'
+    
+    # Configure node settings
+    node.settings:
+      simple_config_update:
+        use_admin_theme: true
+    
+    # Configure user settings
+    user.settings:
+      simple_config_update:
+        verify_mail: true
+        register: admin_only
+        cancel_method: user_cancel_block
+    
+    # Configure pathauto settings
+    pathauto.settings:
+      simple_config_update:
+        enabled: true
+        verbose: false
+        separator: '-'
+        case: 1
+        max_length: 100
+        max_component_length: 100
+        safe_tokens: true
+        safe_tokens_whitelist: []
+        update_action: 2
+        transliterate: true
+        reduce_ascii: false
+        ignore_words: ''
+        punctuation:
+          double_quotes: 0
+          apostrophe: 0
+          backtick: 0
+          colon: 0
+          comma: 0
+          dash: 0
+          underscore: 0
+          period: 0
+          hash: 0
+          forward_slash: 0
+          back_slash: 0
+          plus: 0
+          tilde: 0
+          exclamation: 0
+          number_sign: 0
+          space: 0
+          asterisk: 0
+          caret: 0
+          open_paren: 0
+          close_paren: 0
+          open_square: 0
+          close_square: 0
+          greater_than: 0
+          less_than: 0
+          ampersand: 0
+          percent: 0
+          semi_colon: 0
+          equals: 0
+          question_mark: 0
+          at_sign: 0
+          back_quote: 0
+          open_brace: 0
+          close_brace: 0
+          pipe: 0
+          open_angle: 0
+          close_angle: 0
+          tilde: 0
+          grave_accent: 0
+          vertical_bar: 0
+          non_breaking_space: 0
+          ideographic_full_stop: 0
+          quotation_mark: 0
+          number_sign: 0
+          dollar_sign: 0
+          percent_sign: 0
+          ampersand: 0
+          apostrophe: 0
+          left_parenthesis: 0
+          right_parenthesis: 0
+          asterisk: 0
+          plus_sign: 0
+          comma: 0
+          hyphen_minus: 0
+          full_stop: 0
+          solidus: 0
+          digit_zero: 0
+          digit_one: 0
+          digit_two: 0
+          digit_three: 0
+          digit_four: 0
+          digit_five: 0
+          digit_six: 0
+          digit_seven: 0
+          digit_eight: 0
+          digit_nine: 0
+          colon: 0
+          semicolon: 0
+          less_than_sign: 0
+          equals_sign: 0
+          greater_than_sign: 0
+          question_mark: 0
+          commercial_at: 0
+          left_square_bracket: 0
+          backslash: 0
+          right_square_bracket: 0
+          circumflex_accent: 0
+          low_line: 0
+          grave_accent: 0
+          left_curly_bracket: 0
+          vertical_line: 0
+          right_curly_bracket: 0
+          tilde: 0 

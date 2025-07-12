@@ -1,0 +1,20 @@
+{
+    "name": "drupal/dxpr_cms_basic",
+    "description": "Core DXPR CMS functionality with DXPR Builder and DXPR Theme for visual page building.",
+    "type": "drupal-recipe",
+    "license": ["GPL-2.0-or-later"],
+    "require": {
+        "drupal/core": ">=10.3",
+        "drupal/dxpr_builder": "^2.7.0",
+        "drupal/dxpr_theme": "^6.0.0",
+        "drupal/dxpr_theme_helper": "^2.0.0",
+        "drupal/field_group": "^3.6.0",
+        "drupal/responsive_preview": "^2.2.0",
+        "drupal/section_library": "^1.2.2",
+        "drupal/menu_link_attributes": "^1.5.0",
+        "drupal/moderation_dashboard": "^3.1.0",
+        "drupal/gin": "^4.0.0",
+        "drupal/gin_toolbar": "^2.0.0",
+        "drupal/pathauto": "^1.13.0"
+    }
+} 
